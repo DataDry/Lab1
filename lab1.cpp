@@ -45,7 +45,7 @@ void FloatToBin(float deg)
 		putchar(b & mask ? '1' : '0');
 		b <<= 1;
 		if (i == 1 || i == 2 || i == 9)
-			cout << " ";
+			cout << "δ";
 	}
 }
 
