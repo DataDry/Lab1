@@ -81,12 +81,13 @@ void FloatAction() {
 	}
 }
 void ChoseAction() {
-	cout << "\nChose the desired type of number:\n1. Integer\n2. Float\n\n"; // Вывод меню
-	unsigned short int NumberTypeInput;
+	cout << "\nChose the desired type of number:\n1. Integer\n2. Float\nx. Exit\n\n"; // Вывод меню
+	char NumberTypeInput;
 	cin >> NumberTypeInput;
 	switch (NumberTypeInput) { // При вводе корректного варианта консоль очищается и вызывается соответствующая функция, иначе снова предлагается выбор
-	case(1): system("cls"); IntAction(); break;
-	case(2): system("cls"); FloatAction(); break;
+	case('1'): system("cls"); IntAction(); break;
+	case('2'): system("cls"); FloatAction(); break;
+	case('x'): system("cls"); break;
 	default: ChoseAction(); break;
 	}
 }
