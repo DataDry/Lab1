@@ -62,7 +62,7 @@ void FloatToBin(float deg)
 //
 void IntAction() {
 	int deg;
-	cout << "Enter non-digit to exit" << "\n" << "Enter integer" << "\n\n";
+	cout << "Enter non-digit to exit" << "\n" << "Enter valid integer" << "\n\n";
 	cin >> deg;
 	while (deg != NULL and deg < INT_MAX and deg > INT_MIN) { // Цикл выполняется, пока deg - валидное целочисленное
 		IntToBin(deg);
@@ -70,9 +70,9 @@ void IntAction() {
 		cin >> deg;
 	}
 }
-void FloatAction() {
+void FloatAction() { 
 	float deg;
-	cout << "Enter non-digit to exit" << "\n" << "Enter float" << "\n\n";
+	cout << "Enter non-digit to exit" << "\n" << "Enter valid float" << "\n\n";
 	cin >> deg;
 	while (deg != NULL and deg < INT_MAX and deg > INT_MIN) { // Цикл выполняется, пока deg - валидное вещественное
 		FloatToBin(deg);
@@ -81,13 +81,17 @@ void FloatAction() {
 	}
 }
 void ChoseAction() {
-	cout << "\nChose the desired type of number:\n1. Integer\n2. Float\nx. Exit\n\n"; // Вывод меню
+	cout << "\nChose the desired type of number:\n1. Show size on data types\n2. Integer to RAM view\n3. Float to RAM view\nX/Q. Exit\n"; // Вывод меню
 	char NumberTypeInput;
 	cin >> NumberTypeInput;
 	switch (NumberTypeInput) { // При вводе корректного варианта консоль очищается и вызывается соответствующая функция, иначе снова предлагается выбор
-	case('1'): system("cls"); IntAction(); break;
-	case('2'): system("cls"); FloatAction(); break;
+	case('1'): system("cls"); ShowSize(); break;
+	case('2'): system("cls"); IntAction(); break;
+	case('3'): system("cls"); FloatAction(); break;
 	case('x'): system("cls"); break;
+	case('X'): system("cls"); break;
+	case('q'): system("cls"); break;
+	case('Q'): system("cls"); break;
 	default: ChoseAction(); break;
 	}
 }
@@ -96,8 +100,5 @@ void ChoseAction() {
 //
 int main()
 {
-    ShowSize(); // Вывод того, сколько памяти (в байтах) на вашем компьютере отводится под различные типы данных со спецификаторами и без
-    cout<<"\n";
-    
 	ChoseAction(); // Вывод меню с выбором последующего действия
 }
