@@ -81,7 +81,8 @@ void FloatAction() {
 	}
 }
 void ChoseAction() {
-	cout << "\nChose the desired type of number:\n1. Show size on data types\n2. Integer to RAM view\n3. Float to RAM view\nX/Q. Exit\n"; // Вывод меню
+	Chosequestion:
+	cout << "Chose one of the following options:\n1. Show size on data types\n2. Integer to RAM view\n3. Float to RAM view\nX. Exit\n"; // Вывод меню
 	char NumberTypeInput;
 	cin >> NumberTypeInput;
 	switch (NumberTypeInput) { // При вводе корректного варианта консоль очищается и вызывается соответствующая функция, иначе снова предлагается выбор
@@ -90,9 +91,9 @@ void ChoseAction() {
 	case('3'): system("cls"); FloatAction(); break;
 	case('x'): system("cls"); break;
 	case('X'): system("cls"); break;
-	case('q'): system("cls"); break;
-	case('Q'): system("cls"); break;
-	default: ChoseAction(); break;
+	/*case('q'): system("cls"); break; Добавить выход по q?
+	case('Q'): system("cls"); break;*/
+	default: goto Chosequestion; break;
 	}
 }
 //
@@ -100,5 +101,17 @@ void ChoseAction() {
 //
 int main()
 {
+	Mainstart:
 	ChoseAction(); // Вывод меню с выбором последующего действия
+	cout << "\n" << "Do you want to exit the program?\nType in y/Y to exit, otherwise n/N\n";
+	char ExitTypeInput;
+	Exitquestion:
+	cin >> ExitTypeInput;
+	switch (ExitTypeInput) {
+	case('y'): break;
+	case('Y'): break;
+	case('n'): system("cls"); goto Mainstart;  break;
+	case('N'): system("cls"); goto Mainstart;  break;
+	default: cout << "Enter valid option [y/Y] [n/N]\n"; goto Exitquestion;
+	}
 }
