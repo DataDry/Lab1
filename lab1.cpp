@@ -25,12 +25,12 @@ void ShowSize() {
 
 void IntToBin(int value)
 {
-	unsigned int order = 32; // Количество разрядов
+	unsigned int order = sizeof(int)*8-1; // Количество разрядов
 	unsigned int mask = 1 << order - 1; // Маска побитового сравнения
 	for (int i = 1; i <= order; i++)
 	{
 		putchar(value & mask ? '1' : '0');
-		value <<= 1; // Побитовый сдвиг числа
+		mask >>= 1; // Побитовый сдвиг числа
 		if (i % 8 == 0 || i % order - 1 == 0)
 		{
 			putchar('δ'); // Разделитель
@@ -51,7 +51,7 @@ void FloatToBin(float deg)
 	for (int i = 1; i <= order; i++)
 	{
 		putchar(value & mask ? '1' : '0');
-		value <<= 1; // Побитовый сдвиг числа
+		mask >>= 1; // Побитовый сдвиг числа
 		if (i == 1 || i == 2 || i == 9)
 			putchar('δ'); // Разделитель
 	}
