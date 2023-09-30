@@ -1,7 +1,14 @@
 #include <iostream>
 #include <string>
+#include <sstream>
 using namespace std;
-
+bool isFloat( string myString ) {
+    std::istringstream iss(myString);
+    float f;
+    iss >> noskipws >> f; // noskipws considers leading whitespace invalid
+    // Check the entire string was consumed and if either failbit or badbit is set
+    return iss.eof() && !iss.fail(); 
+}
 //
 // Пункт 1. Вывод того, сколько памяти (в байтах) на вашем компьютере отводится под различные типы данных со спецификаторами и без
 // Для этого используется функция ShowSize, вызываемая в main
@@ -87,9 +94,9 @@ int FloatAction() {
 	cout << "Enter X to exit" << "\n" << "Enter valid float" << "\n\n";
 	floatAsk:
 	cin >> deg;
-	floatF = atof(deg.c_str());
+	floatF = stof(deg.c_str());
 	if (deg == "x" || deg == "X") { return(0); }
-	if (deg != to_string(floatF)) { cout << "\nInvalid float entered, try again: \n"; goto floatAsk; }
+	if (!isFloat(deg)) { cout << "\nInvalid float entered, try again: \n"; goto floatAsk; }
 	while (floatF != NULL and floatF < INT_MAX-1 and floatF > INT_MIN+1) { // Цикл выполняется, пока deg - валидное вещественное
 		FloatToBin(floatF);
 		cout << "\n" << "Address: " << &floatF << "\n\n";
@@ -97,7 +104,7 @@ int FloatAction() {
 		cin >> deg;
 		floatF = atof(deg.c_str());
 		if (deg == "x" || deg == "X") { return(0); }
-		if (deg != to_string(floatF)) { cout << "\nInvalid integer entered, try again: \n"; goto loopfloatAsk; }
+		if (!isFloat(deg)) { cout << "\nInvalid float entered, try again: \n"; goto loopfloatAsk; }
 	}
 }
 void ChoseAction() {
