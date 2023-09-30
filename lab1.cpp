@@ -6,7 +6,6 @@ using namespace std;
 // Пункт 1. Вывод того, сколько памяти (в байтах) на вашем компьютере отводится под различные типы данных со спецификаторами и без
 // Для этого используется функция ShowSize, вызываемая в main
 //
-const string exi = "exit";
 void ShowSize() {
 	cout << "Size of int: " << sizeof(int) << "\n";
 	cout << "Size of short int: " << sizeof(short int) << "\n";
@@ -17,7 +16,6 @@ void ShowSize() {
 	cout << "Size of char: " << sizeof(char) << "\n";
 	cout << "Size of bool: " << sizeof(bool) << "\n";
 }
-
 //
 // Пункт 2. Вывод на экран двоичного представления в памяти целого числа (все разряды)
 // Пункт 3. Вывод на экран двоичное представление в памяти типа float (все разряды)
@@ -78,7 +76,7 @@ int IntAction() {
 		cin >> deg;
 		intI = atoi(deg.c_str());
 		if (deg == "x" || deg == "X") { return(0); }
-		if (deg != _itoa(intI, strbuffer, 10)) { cout << "\nInvalid integer entered, try again: \n"; goto loopintAsk; }
+		if (deg != to_string(intI)) { cout << "\nInvalid integer entered, try again: \n"; goto loopintAsk; }
 	}
 }
 
