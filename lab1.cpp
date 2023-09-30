@@ -1,11 +1,12 @@
 #include <iostream>
+#include <string>
 using namespace std;
 
 //
 // Пункт 1. Вывод того, сколько памяти (в байтах) на вашем компьютере отводится под различные типы данных со спецификаторами и без
 // Для этого используется функция ShowSize, вызываемая в main
 //
-
+const string exi = "exit";
 void ShowSize() {
 	cout << "Size of int: " << sizeof(int) << "\n";
 	cout << "Size of short int: " << sizeof(short int) << "\n";
@@ -60,24 +61,45 @@ void FloatToBin(float deg)
 //
 // Action функции, используемые для создания меню и упрощения функции main
 //
-void IntAction() {
-	int deg;
-	cout << "Enter non-digit to exit" << "\n" << "Enter valid integer" << "\n\n";
+int IntAction() {
+	string deg;
+	char strbuffer[_MAX_ITOSTR_BASE10_COUNT];
+	int intI;
+	cout << "Enter X to exit" << "\n" << "Enter valid integer" << "\n\n";
+	intAsk:
 	cin >> deg;
-	while (deg != NULL and deg < INT_MAX and deg > INT_MIN) { // Цикл выполняется, пока deg - валидное целочисленное
-		IntToBin(deg);
-		cout << "\n" << "Address: " << &deg << "\n\n";
+	intI = atoi(deg.c_str());
+	if (deg == "x" || deg == "X") { return(0); }
+	if (deg != _itoa(intI, strbuffer, 10)) { cout << "\nInvalid integer entered, try again: \n"; goto intAsk; }
+	while (intI != NULL and intI < INT_MAX-1 and intI > INT_MIN+1) { // Цикл выполняется, пока deg - валидное целочисленное
+		IntToBin(intI);
+		cout << "\n" << "Address: " << &intI << "\n\n";
+		loopintAsk:
 		cin >> deg;
+		intI = atoi(deg.c_str());
+		if (deg == "x" || deg == "X") { return(0); }
+		if (deg != _itoa(intI, strbuffer, 10)) { cout << "\nInvalid integer entered, try again: \n"; goto loopintAsk; }
 	}
 }
-void FloatAction() { 
-	float deg;
-	cout << "Enter non-digit to exit" << "\n" << "Enter valid float" << "\n\n";
+
+int FloatAction() { 
+	string deg;
+	char strbuffer[_MAX_ITOSTR_BASE10_COUNT];
+	float floatF;
+	cout << "Enter X to exit" << "\n" << "Enter valid float" << "\n\n";
+	floatAsk:
 	cin >> deg;
-	while (deg != NULL and deg < INT_MAX and deg > INT_MIN) { // Цикл выполняется, пока deg - валидное вещественное
-		FloatToBin(deg);
-		cout << "\n" << "Address: " << &deg << "\n\n";
+	floatF = atof(deg.c_str());
+	if (deg == "x" || deg == "X") { return(0); }
+	if (deg != to_string(floatF)) { cout << "\nInvalid float entered, try again: \n"; goto floatAsk; }
+	while (floatF != NULL and floatF < INT_MAX-1 and floatF > INT_MIN+1) { // Цикл выполняется, пока deg - валидное вещественное
+		FloatToBin(floatF);
+		cout << "\n" << "Address: " << &floatF << "\n\n";
+		loopfloatAsk:
 		cin >> deg;
+		floatF = atof(deg.c_str());
+		if (deg == "x" || deg == "X") { return(0); }
+		if (deg != to_string(floatF)) { cout << "\nInvalid integer entered, try again: \n"; goto loopfloatAsk; }
 	}
 }
 void ChoseAction() {
