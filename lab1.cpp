@@ -76,14 +76,14 @@ int IntAction() {
 	intI = atoi(deg.c_str());
 	if (deg == "x" || deg == "X") { return(0); }
 	if (deg != _itoa(intI, strbuffer, 10)) { cout << "\nInvalid integer entered, try again: \n"; goto intAsk; }
-	while (intI != NULL and intI < INT_MAX-1 and intI > INT_MIN+1) { // Цикл выполняется, пока deg - валидное целочисленное
+	while (intI != NULL and intI <= INT_MAX and intI >= INT_MIN) { // Цикл выполняется, пока deg - валидное целочисленное
 		IntToBin(intI);
 		cout << "\n" << "Address: " << &intI << "\n\n";
 		loopintAsk:
 		cin >> deg;
 		intI = atoi(deg.c_str());
 		if (deg == "x" || deg == "X") { return(0); }
-		if (deg != to_string(intI)) { cout << "\nInvalid integer entered, try again: \n"; goto loopintAsk; }
+		if (deg != to_string(intI)) { cout << "\nInvalid integer entered, try again: \n\n"; goto loopintAsk; }
 	}
 }
 
@@ -96,8 +96,8 @@ int FloatAction() {
 	cin >> deg;
 	floatF = stof(deg.c_str());
 	if (deg == "x" || deg == "X") { return(0); }
-	if (!isFloat(deg)) { cout << "\nInvalid float entered, try again: \n"; goto floatAsk; }
-	while (floatF != NULL and floatF < INT_MAX-1 and floatF > INT_MIN+1) { // Цикл выполняется, пока deg - валидное вещественное
+	if (!isFloat(deg)) { cout << "\nInvalid float entered, try again: \n\n"; goto floatAsk; }
+	while (floatF != NULL and floatF <= INT_MAX and floatF >= INT_MIN) { // Цикл выполняется, пока deg - валидное вещественное
 		FloatToBin(floatF);
 		cout << "\n" << "Address: " << &floatF << "\n\n";
 		loopfloatAsk:
@@ -109,7 +109,7 @@ int FloatAction() {
 }
 void ChoseAction() {
 	Chosequestion:
-	cout << "Chose one of the following options:\n1. Show size on data types\n2. Integer to RAM view\n3. Float to RAM view\nX. Exit\n"; // Вывод меню
+	cout << "Chose one of the following options:\n1. Show size on data types\n2. Integer to RAM view\n3. Float to RAM view\nX. Exit\n\n"; // Вывод меню
 	char NumberTypeInput;
 	cin >> NumberTypeInput;
 	switch (NumberTypeInput) { // При вводе корректного варианта консоль очищается и вызывается соответствующая функция, иначе снова предлагается выбор
@@ -130,7 +130,7 @@ int main()
 {
 	Mainstart:
 	ChoseAction(); // Вывод меню с выбором последующего действия
-	cout << "\n" << "Do you want to exit the program?\nType in y/Y to exit, otherwise n/N\n";
+	cout << "\nDo you want to exit the program?\nType in y/Y to exit, otherwise n/N\n\n";
 	char ExitTypeInput;
 	Exitquestion:
 	cin >> ExitTypeInput;
@@ -139,6 +139,6 @@ int main()
 	case('Y'): break;
 	case('n'): system("cls"); goto Mainstart;  break;
 	case('N'): system("cls"); goto Mainstart;  break;
-	default: cout << "Enter valid option [y/Y] [n/N]\n"; goto Exitquestion;
+	default: cout << "Enter valid option [y/Y] [n/N]\n\n"; goto Exitquestion;
 	}
 }
