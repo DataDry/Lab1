@@ -82,7 +82,6 @@ void FloatToBin(float deg, int customMove)
 //
 int IntAction() {
 	string deg;
-	char strbuffer[_MAX_ITOSTR_BASE10_COUNT];
 	int intI;
 	int customMove;
 	string customMoveInput;
@@ -119,7 +118,6 @@ int IntAction() {
 
 int FloatAction() { 
 	string deg;
-	char strbuffer[_MAX_ITOSTR_BASE10_COUNT];
 	float floatF;
 	int customMove;
 	string customMoveInput;
