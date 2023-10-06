@@ -92,14 +92,14 @@ int IntAction() {
 	cin >> deg;
 	intI = atoi(deg.c_str());
 	if (deg == "x" || deg == "X") { return(0); }
-	if (deg != _itoa(intI, strbuffer, 10)) { cout << "\nInvalid integer entered, try again: \n"; goto intAsk; }
+	if (deg != to_string(intI)) { cout << "\nInvalid integer entered, try again: \n"; goto intAsk; }
 	//Input customMove
 	BitwiseMoveAsk:
 	cout << "Enter valid custom bitwise move number\n";
 	cin >> customMoveInput;
 	customMove = atoi(customMoveInput.c_str());
 	if (customMoveInput == "x" || customMoveInput == "X") { return(0); }
-	if (customMoveInput != _itoa(customMove, strbuffer, 10)) { cout << "\nInvalid bitwise move number entered, try again: \n"; goto BitwiseMoveAsk; }
+	if (customMoveInput != to_string(customMove)) { cout << "\nInvalid bitwise move number entered, try again: \n"; goto BitwiseMoveAsk; }
 	while (intI != NULL and intI <= INT_MAX and intI >= INT_MIN) { // Цикл выполняется, пока deg - валидное целочисленное
 		IntToBin(intI, customMove);
 		cout << "\n" << "Address: " << &intI << "\n\n";
@@ -109,10 +109,11 @@ int IntAction() {
 		if (deg == "x" || deg == "X") { return(0); }
 		if (deg != to_string(intI)) { cout << "\nInvalid integer entered, try again: \n\n"; goto loopintAsk; }
 		loopBitwiseMoveAsk:
+		cout << "Enter valid custom bitwise move number\n";
 		cin >> customMoveInput;
 		customMove = atoi(customMoveInput.c_str());
 		if (customMoveInput == "x" || customMoveInput == "X") { return(0); }
-		if (customMoveInput != _itoa(customMove, strbuffer, 10)) { cout << "\nInvalid bitwise move number entered, try again: \n"; goto loopBitwiseMoveAsk; }
+		if (customMoveInput != to_string(customMove)) { cout << "\nInvalid bitwise move number entered, try again: \n"; goto loopBitwiseMoveAsk; }
 	}
 }
 
@@ -135,7 +136,7 @@ int FloatAction() {
 	cin >> customMoveInput;
 	customMove = atoi(customMoveInput.c_str());
 	if (customMoveInput == "x" || customMoveInput == "X") { return(0); }
-	if (customMoveInput != _itoa(customMove, strbuffer, 10)) { cout << "\nInvalid bitwise move number entered, try again: \n"; goto BitwiseMoveAsk; }
+	if (customMoveInput != to_string(customMove)) { cout << "\nInvalid bitwise move number entered, try again: \n"; goto BitwiseMoveAsk; }
 	while (floatF != NULL and floatF <= INT_MAX and floatF >= INT_MIN) { // Цикл выполняется, пока deg - валидное вещественное
 		FloatToBin(floatF, customMove);
 		cout << "\n" << "Address: " << &floatF << "\n\n";
@@ -145,10 +146,11 @@ int FloatAction() {
 		if (deg == "x" || deg == "X") { return(0); }
 		if (!isFloat(deg)) { cout << "\nInvalid float entered, try again: \n"; goto loopfloatAsk; }
 		loopBitwiseMoveAsk:
+		cout << "Enter valid custom bitwise move number\n";
 		cin >> customMoveInput;
 		customMove = atoi(customMoveInput.c_str());
 		if (customMoveInput == "x" || customMoveInput == "X") { return(0); }
-		if (customMoveInput != _itoa(customMove, strbuffer, 10)) { cout << "\nInvalid bitwise move number entered, try again: \n"; goto loopBitwiseMoveAsk; }
+		if (customMoveInput != to_string(customMove)) { cout << "\nInvalid bitwise move number entered, try again: \n"; goto loopBitwiseMoveAsk; }
 	}
 }
 void ChoseAction() {
